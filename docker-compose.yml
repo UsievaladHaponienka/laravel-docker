@@ -10,7 +10,7 @@ services:
     image: travellist
     container_name: laravel-php-fpm
     restart: unless-stopped
-    working_dir: /var/www/
+    working_dir: /var/www/laravel/
     volumes:
       - ./:/var/www
     networks:

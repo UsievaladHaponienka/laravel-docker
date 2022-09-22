@@ -69,4 +69,19 @@ docker\:build:
 	@echo "$(call yellow,'Start build containers')"
 	@docker-compose -f docker-compose.yml build $(call args)
 
+fpm:
+	@echo "$(call yellow,'Entering PHP-FPM container')"
+	@docker exec -ti laravel-php-fpm bash
+
+npm:
+	@echo "$(call yellow,'Entering PHP-FPM container')"
+	@docker exec -ti laravel-php-fpm npm $(call args)
+
+artisan:
+	@echo "$(call yellow,'Executing Artisan command')"
+	@docker exec -ti laravel-php-fpm php artisan $(call args)
+
+composer:
+	@echo "$(call yellow,'Executing composer command')"
+	@docker exec -ti laravel-php-fpm composer $(call args)
 docker\:magic: docker\:down docker\:build docker\:up

@@ -84,4 +84,4 @@ artisan:
 composer:
 	@echo "$(call yellow,'Executing composer command')"
 	@docker exec -ti laravel-php-fpm composer $(call args)
-docker\:magic: docker\:down docker\:build docker\:up
+docker\:magic: docker\:stop docker\:build docker\:up

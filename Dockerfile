@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
+#Install xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 # Install mode js and npm
 RUN apt-get update && apt-get install -y nodejs npm
 

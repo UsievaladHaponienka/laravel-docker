@@ -8,17 +8,22 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: travellist
-    container_name: laravel-php-fpm
+    container_name: php-fpm
     restart: unless-stopped
     working_dir: /var/www/laravel/
     volumes:
       - ./:/var/www
+      - ./docker-compose/xdebug/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     networks:
       - laravel-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - PHP_IDE_CONFIG=serverName=${APP_URL}
 
   db:
     image: mysql:8.0
-    container_name: laravel-db
+    container_name: db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -35,7 +40,7 @@ services:
       - "3306:3306"
   nginx:
     image: nginx:alpine
-    container_name: laravel-nginx
+    container_name: nginx
     restart: unless-stopped
     ports:
       - 80:80

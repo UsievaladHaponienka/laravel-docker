@@ -71,7 +71,7 @@ docker\:build:
 
 fpm:
 	@echo "$(call yellow,'Entering PHP-FPM container')"
-	@docker exec -ti laravel-php-fpm bash
+	@docker exec -ti php-fpm bash
 
 npm:
 	@echo "$(call yellow,'Entering PHP-FPM container')"
